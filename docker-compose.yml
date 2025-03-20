@@ -1,0 +1,17 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_test
+    ports:
+      - "82:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./frontend-client:/var/www/frontend-client
+      - ./frontend-admin:/var/www/frontend-admin
+      - ./app-backend/uploads:/home/vlad/app-backend/uploads
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge
